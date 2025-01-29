@@ -73,10 +73,12 @@ function ChatRoom() {
   const sendMessage = async (e) => {
     e.preventDefault();
 
+    if (!formValue.trim()) return;
+
     const { uid, photoURL } = auth.currentUser;
 
     await addDoc(messagesRef, {
-      text: formValue,
+      text: formValue.trim(),
       createdAt: serverTimestamp(),
       uid,
       photoURL,
@@ -114,7 +116,10 @@ function ChatMessage(props) {
 
   return (
     <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://freesvg.org/img/abstract-user-flat-4.png'} alt="Foto do usuário" />
+      <img
+        src={photoURL || "https://freesvg.org/img/abstract-user-flat-4.png"}
+        alt="Foto do usuário"
+      />
       <p>{text}</p>
     </div>
   );
