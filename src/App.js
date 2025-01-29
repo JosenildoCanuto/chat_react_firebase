@@ -1,6 +1,5 @@
 import "./App.css";
 
-// Importações do Firebase Modular SDK
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
@@ -17,7 +16,6 @@ import { useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
-// Configuração do Firebase
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -38,7 +36,10 @@ function App() {
 
   return (
     <div className="App">
-      <header></header>
+      <header>
+        <h1>Chat</h1>
+        <SignOut />
+      </header>
       <section>{user ? <ChatRoom /> : <SignIn />}</section>
     </div>
   );
@@ -113,13 +114,7 @@ function ChatMessage(props) {
 
   return (
     <div className={`message ${messageClass}`}>
-      <img
-        src={
-          photoURL ||
-          "https://www.google.com/url?sa=i&url=https%3A%2F%2Ficonduck.com%2Ficons%2F180867%2Fprofile-circle&psig=AOvVaw0rmt-V06YZ-QJBKVHWxGOx&ust=1738113392691000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKC6vIyfl4sDFQAAAAAdAAAAABAE"
-        }
-        alt="Foto do usuário"
-      />
+      <img src={photoURL || 'https://freesvg.org/img/abstract-user-flat-4.png'} alt="Foto do usuário" />
       <p>{text}</p>
     </div>
   );
